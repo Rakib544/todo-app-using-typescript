@@ -10,16 +10,16 @@ const SingleTodo = ({
   handleUpdateTodo,
 }: IProps): JSX.Element => {
   return (
-    <div className="flex justify-between my-2 cursor-pointer border-b border-gray-200 p-2 items-center">
+    <div className="flex justify-between my-2 cursor-pointer p-2 items-center">
       <div className="flex items-center">
         <input
           type="checkbox"
-          className="mr-1"
+          className="mr-1 h-4 w-4 checked:bg-blue-600 checked:border-transparent cursor-pointer focus:outline-none focus:border-transparent"
           checked={todo.isComplete}
           onChange={() => handleUpdateTodo(todo.id)}
         />
         <h1
-          className={`text-md font-medium ${
+          className={`text-md font-medium text-gray-500 ${
             todo.isComplete ? "line-through" : ""
           }`}
         >
@@ -28,7 +28,7 @@ const SingleTodo = ({
       </div>
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        className="h-6 w-6"
+        className="h-6 w-6 text-gray-500"
         onClick={() => handleDeleteTodo(todo.id)}
         fill="none"
         viewBox="0 0 24 24"
