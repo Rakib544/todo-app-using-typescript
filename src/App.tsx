@@ -1,29 +1,16 @@
 import { useState } from "react";
+import SingleTodo from "./components/SingleTodo";
+import { todoData } from "./todoData";
+
 interface TodoList {
   title: string;
-  isComplete: false;
+  isComplete: boolean;
   id: number;
 }
 
 function App() {
   const [todoTitle, setTodoTitle] = useState<string>("");
-  const [todoList, setTodoList] = useState<TodoList[]>([
-    {
-      title: "I have to do my remaining works",
-      isComplete: false,
-      id: 1,
-    },
-    {
-      title: "I have to buy Keyboard",
-      isComplete: false,
-      id: 2,
-    },
-    {
-      title: "I have to play cricket",
-      isComplete: false,
-      id: 3,
-    },
-  ]);
+  const [todoList, setTodoList] = useState<TodoList[]>(todoData);
 
   const handleAddTodo = (): void => {
     setTodoList([
@@ -47,9 +34,11 @@ function App() {
       <h2 className="text-center">Todo App</h2>
       <ul>
         {todoList.map((todo) => (
-          <li onClick={() => handleDeleteTodo(todo.id)} key={todo.id}>
-            {todo.title}
-          </li>
+          <SingleTodo
+            todo={todo}
+            key={todo.id}
+            handleDeleteTodo={handleDeleteTodo}
+          />
         ))}
       </ul>
       <div className="flex">
