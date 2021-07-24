@@ -6,7 +6,7 @@ export const todoData = [
   },
   {
     title: "I have to buy Keyboard",
-    isComplete: false,
+    isComplete: true,
     id: 2,
   },
   {

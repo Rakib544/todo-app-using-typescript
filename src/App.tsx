@@ -29,27 +29,42 @@ function App() {
     setTodoList(newTodoList);
   };
 
+  const handleUpdateTodo = (id: number): void => {
+    const index = todoList.findIndex((todo) => todo.id === id);
+    const newTodoList = [...todoList];
+    const isComplete = todoList[index].isComplete;
+    newTodoList[index].isComplete = !isComplete;
+    setTodoList(newTodoList);
+  };
+
   return (
-    <div>
-      <h2 className="text-center">Todo App</h2>
-      <ul>
-        {todoList.map((todo) => (
-          <SingleTodo
-            todo={todo}
-            key={todo.id}
-            handleDeleteTodo={handleDeleteTodo}
-          />
-        ))}
-      </ul>
-      <div className="flex">
+    <div className="w-full md:w-3/4 lg:w-2/4 mx-4 md:mx-auto shadow-sm p-4">
+      <h2 className="text-center text-2xl font-bold mt-4">Todo Application</h2>
+      <div className="flex my-4 justify-center">
         <input
           type="text"
           onChange={(e) => setTodoTitle(e.target.value)}
           placeholder="Enter todo"
           value={todoTitle}
           name="todo"
+          className="placeholder-gray-500 placeholder-opacity-100 px-4 py-2 w-3/4 border border-gray-900 rounded-l-lg"
         />
-        <button onClick={handleAddTodo}>Add</button>
+        <button
+          className="px-6 py-2 bg-gray-900 text-white border border-gray-900 rounded-r-lg text-xs uppercase font-semibold tracking-wide"
+          onClick={handleAddTodo}
+        >
+          Add
+        </button>
+      </div>
+      <div>
+        {todoList.map((todo) => (
+          <SingleTodo
+            todo={todo}
+            key={todo.id}
+            handleDeleteTodo={handleDeleteTodo}
+            handleUpdateTodo={handleUpdateTodo}
+          />
+        ))}
       </div>
     </div>
   );
